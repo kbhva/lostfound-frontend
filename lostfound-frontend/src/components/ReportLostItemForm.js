@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ReportLostItemForm.css";
+import { submitLostItem } from "../services/api";
 
 const ReportLostItemForm = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,23 @@ const ReportLostItemForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // TODO: Send formData to backend when API is ready
+
+    const response = await submitLostItem(formData);
+    console.log("API response:", response);
+
+    if (response.success) {
+      alert("Lost item submitted successfully!");
+      setFormData({
+        title: "",
+        description: "",
+        location: "",
+        date: "",
+      });
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -32,6 +46,7 @@ const ReportLostItemForm = () => {
           placeholder="Item Title"
           value={formData.title}
           onChange={handleChange}
+          required
         />
         <textarea
           name="description"
@@ -39,6 +54,7 @@ const ReportLostItemForm = () => {
           rows="3"
           value={formData.description}
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -46,15 +62,17 @@ const ReportLostItemForm = () => {
           placeholder="Last Seen Location"
           value={formData.location}
           onChange={handleChange}
+          required
         />
         <input
           type="date"
           name="date"
           value={formData.date}
           onChange={handleChange}
+          required
         />
         <button type="submit">Submit</button>
-        {/* TODO: Connect this to backend API */}
+        {/* TODO: Replace mock API with real POST endpoint later */}
       </form>
     </div>
   );
