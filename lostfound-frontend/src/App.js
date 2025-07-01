@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import LostItemCard from "./components/LostItemCard";
+import ReportLostItemForm from "./components/ReportLostItemForm";
 import { getLostItems } from "./services/api";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+
       {lostItems.map((item) => (
         <LostItemCard
           key={item.id}
@@ -28,6 +30,8 @@ function App() {
           date={item.date}
         />
       ))}
+
+      <ReportLostItemForm />
     </div>
   );
 }
