@@ -1,0 +1,26 @@
+.lost-item-card {
+  border-left: 4px solid #007BFF;
+  background-color: #f9f9f9;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.lost-item-card:hover {
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.15);
+}
+
+.lost-item-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.lost-item-card p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
