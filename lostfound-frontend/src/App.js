@@ -17,6 +17,10 @@ function App() {
     fetchData();
   }, []);
 
+  const handleNewItem = (newItem) => {
+    setLostItems((prevItems) => [...prevItems, newItem]);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -31,7 +35,7 @@ function App() {
         />
       ))}
 
-      <ReportLostItemForm />
+      <ReportLostItemForm onNewItem={handleNewItem} />
     </div>
   );
 }
