@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import LostItemCard from "./components/LostItemCard";
+import { getLostItems } from "./services/api";
 
 function App() {
+  const [lostItems, setLostItems] = useState([]);
+
+  useEffect(() => {
+    // Later, this will hit the backend
+    const fetchData = async () => {
+      const data = await getLostItems();
+      setLostItems(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
       <Header />
-      <LostItemCard
-        title="Wallet"
-        description="Brown leather wallet with ID inside"
-        location="Library"
-        date="2025-06-28"
-      />
-      {/* TODO: Later connect to backend and map list of items dynamically */}
+      {lostItems.map((item) => (
+        <LostItemCard
+          key={item.id}
+          title={item.title}
+          description={item.description}
+          location={item.location}
+          date={item.date}
+        />
+      ))}
     </div>
   );
 }
