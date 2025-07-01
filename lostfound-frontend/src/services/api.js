@@ -24,4 +24,20 @@ export const getLostItems = async () => {
   ];
 };
 
+// Placeholder function to submit a lost item
+export const submitLostItem = async (itemData) => {
+  try {
+    console.log("Submitting lost item:", itemData);
+
+    // In the future, replace this with:
+    // const response = await api.post("/", itemData);
+    // return response.data;
+
+    return { success: true, message: "Mock submission successful" };
+  } catch (error) {
+    console.error("Error submitting lost item:", error);
+    return { success: false, message: "Submission failed" };
+  }
+};
+
 export default api;
