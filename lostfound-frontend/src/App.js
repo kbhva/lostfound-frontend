@@ -9,7 +9,6 @@ function App() {
   const [lostItems, setLostItems] = useState([]);
 
   useEffect(() => {
-    // Later, this will hit the backend
     const fetchData = async () => {
       const data = await getLostItems();
       setLostItems(data);
@@ -26,13 +25,7 @@ function App() {
       <Header />
 
       {lostItems.map((item) => (
-        <LostItemCard
-          key={item.id}
-          title={item.title}
-          description={item.description}
-          location={item.location}
-          date={item.date}
-        />
+        <LostItemCard key={item._id} item={item} />
       ))}
 
       <ReportLostItemForm onNewItem={handleNewItem} />

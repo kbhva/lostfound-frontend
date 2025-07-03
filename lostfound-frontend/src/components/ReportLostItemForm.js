@@ -6,8 +6,8 @@ const ReportLostItemForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    location: "",
-    date: "",
+    lastSeenLocation: "",
+    dateLost: "",
   });
 
   const handleChange = (e) => {
@@ -28,8 +28,8 @@ const ReportLostItemForm = () => {
       setFormData({
         title: "",
         description: "",
-        location: "",
-        date: "",
+        lastSeenLocation: "",
+        dateLost: "",
       });
     } else {
       alert("Something went wrong. Please try again.");
@@ -58,21 +58,20 @@ const ReportLostItemForm = () => {
         />
         <input
           type="text"
-          name="location"
+          name="lastSeenLocation"
           placeholder="Last Seen Location"
-          value={formData.location}
+          value={formData.lastSeenLocation}
           onChange={handleChange}
           required
         />
         <input
           type="date"
-          name="date"
-          value={formData.date}
+          name="dateLost"
+          value={formData.dateLost}
           onChange={handleChange}
           required
         />
         <button type="submit">Submit</button>
-        {/* TODO: Replace mock API with real POST endpoint later */}
       </form>
     </div>
   );

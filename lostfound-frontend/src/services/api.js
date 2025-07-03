@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const getLostItems = async () => {
   try {
-    const response = await api.get("/");
+    const response = await api.get("");
     return response.data;
   } catch (error) {
     console.error("Error fetching lost items:", error);
@@ -16,7 +16,7 @@ export const getLostItems = async () => {
 
 export const submitLostItem = async (itemData) => {
   try {
-    const response = await api.post("/", itemData);
+    const response = await api.post("", itemData);
     return { success: true, data: response.data };
   } catch (error) {
     console.error("Error submitting lost item:", error);
