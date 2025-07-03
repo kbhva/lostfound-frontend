@@ -1,35 +1,26 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
-import LostItemCard from "./components/LostItemCard";
-import ReportLostItemForm from "./components/ReportLostItemForm";
-import { getLostItems } from "./services/api";
+import LostPage from "./pages/LostPage";
+import FoundPage from "./pages/FoundPage";
 
 function App() {
-  const [lostItems, setLostItems] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getLostItems();
-      setLostItems(data);
-    };
-    fetchData();
-  }, []);
-
-  const handleNewItem = (newItem) => {
-    setLostItems((prevItems) => [...prevItems, newItem]);
-  };
-
   return (
-    <div className="App">
-      <Header />
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          {/* Redirect root to lost by default */}
+          <Route path="/" element={<Navigate to="/lost" />} />
 
-      {lostItems.map((item) => (
-        <LostItemCard key={item._id} item={item} />
-      ))}
+          {/* Route to Lost Items Page */}
+          <Route path="/lost" element={<LostPage />} />
 
-      <ReportLostItemForm onNewItem={handleNewItem} />
-    </div>
+          {/* Route to Found Items Page */}
+          <Route path="/found" element={<FoundPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

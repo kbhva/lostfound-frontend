@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import "./ReportLostItemForm.css";
-import { submitLostItem } from "../services/api";
+import { submitFoundItem } from "../services/api";
+import "./ReportFoundItemForm.css";
 
-const ReportLostItemForm = () => {
+const ReportFoundItemForm = ({ onNewItem }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    lastSeenLocation: "",
-    dateLost: "",
+    foundLocation: "",
+    dateFound: "",
     contactInfo: "",
   });
-
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -22,25 +21,37 @@ const ReportLostItemForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await submitLostItem(formData);
-    console.log("API response:", response);
+    const payload = {
+      ...formData,
+      claimed: false,
+    };
 
-    if (response.success) {
-      alert("Lost item submitted successfully!");
-      setFormData({
-        title: "",
-        description: "",
-        lastSeenLocation: "",
-        dateLost: "",
-      });
-    } else {
-      alert("Something went wrong. Please try again.");
+    try {
+      const response = await submitFoundItem(payload);
+      console.log("Found item submitted:", response);
+
+      if (response.success) {
+        alert("Found item submitted successfully!");
+        onNewItem && onNewItem(response.data);
+        setFormData({
+          title: "",
+          description: "",
+          foundLocation: "",
+          dateFound: "",
+          contactInfo: "",
+        });
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Something went wrong.");
     }
   };
 
   return (
     <div className="report-form">
-      <h3>Report a Lost Item</h3>
+      <h3>Report a Found Item</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -60,16 +71,16 @@ const ReportLostItemForm = () => {
         />
         <input
           type="text"
-          name="lastSeenLocation"
-          placeholder="Last Seen Location"
-          value={formData.lastSeenLocation}
+          name="foundLocation"
+          placeholder="Location Found"
+          value={formData.foundLocation}
           onChange={handleChange}
           required
         />
         <input
           type="date"
-          name="dateLost"
-          value={formData.dateLost}
+          name="dateFound"
+          value={formData.dateFound}
           onChange={handleChange}
           required
         />
@@ -81,11 +92,10 @@ const ReportLostItemForm = () => {
           onChange={handleChange}
           required
         />
-
         <button type="submit">Submit</button>
       </form>
     </div>
   );
 };
 
-export default ReportLostItemForm;
+export default ReportFoundItemForm;

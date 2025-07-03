@@ -8,6 +8,8 @@ const LostItemCard = ({ item }) => {
       <p>{item.description}</p>
       <p><strong>Last seen:</strong> {item.lastSeenLocation || "Unknown"}</p>
       <p><strong>Date Lost:</strong> {item.dateLost || "Not provided"}</p>
+      <p><strong>Contact:</strong> {item.contactInfo}</p>
+
     </div>
   );
 };

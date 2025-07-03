@@ -5,3 +5,38 @@
   text-align: center;
   font-family: "Segoe UI", sans-serif;
 }
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f3460;
+  padding: 15px 25px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #e3e3e3;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #1a4b7c;
+  color: white;
+}
