@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Header.css"; // Style this separately
+import "./Header.css";
 
 const Header = () => (
   <header className="app-header">
@@ -7,6 +7,9 @@ const Header = () => (
     <nav>
       <Link to="/lost">Lost</Link>
       <Link to="/found">Found</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/search">Search</Link>
+
     </nav>
   </header>
 );

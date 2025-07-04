@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Header from "./components/Header";
 import LostPage from "./pages/LostPage";
 import FoundPage from "./pages/FoundPage";
+import Dashboard from "./pages/Dashboard";
+import SearchPage from "./pages/SearchPage";
+
+
+
 
 function App() {
   return (
@@ -10,14 +15,18 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          {/* Redirect root to lost by default */}
+
           <Route path="/" element={<Navigate to="/lost" />} />
 
-          {/* Route to Lost Items Page */}
+
           <Route path="/lost" element={<LostPage />} />
 
-          {/* Route to Found Items Page */}
+
           <Route path="/found" element={<FoundPage />} />
+
+          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
       </div>
     </Router>
